@@ -9,7 +9,7 @@ from typing import Any, Callable
 from vulnclaw.agent.constraint_policy import validate_phase_transition
 from vulnclaw.agent.context import PentestPhase
 from vulnclaw.agent.ctf_mode import update_ctf_state
-from vulnclaw.agent.llm_client import call_llm_auto, call_llm_auto_stream
+from vulnclaw.agent.llm_client import call_llm_auto
 from vulnclaw.agent.runtime_state import AgentResult, PersistentCycleResult
 
 RECON_MIN_ROUNDS = 8

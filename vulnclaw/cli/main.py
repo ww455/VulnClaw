@@ -1856,7 +1856,6 @@ def tui(
     ),
 ) -> None:
     """Open the terminal UI workbench."""
-    from vulnclaw.cli.textui import TEXTUAL_AVAILABLE, VULNCLAW_TUI_LEGACY
     from vulnclaw.cli.tui import (
         MODES,
         build_state_from_options,
@@ -1892,26 +1891,7 @@ def tui(
         console.out(render_tui_home(state), end="")
         return
 
-    # Try Textual TUI first, fall back to Rich TUI
-    if TEXTUAL_AVAILABLE and not VULNCLAW_TUI_LEGACY:
-        from vulnclaw.cli.textui.app import run_textual_app
-
-        run_textual_app(
-            target=state.target,
-            mode=state.mode,
-            only_host=state.only_host,
-            only_port=state.only_port,
-            only_path=state.only_path,
-            blocked_host=state.blocked_host,
-            blocked_path=state.blocked_path,
-            allow_actions=state.allow_actions,
-            block_actions=state.block_actions,
-            resume=state.resume,
-        )
-    else:
-        if VULNCLAW_TUI_LEGACY:
-            console.print("[dim]VULNCLAW_TUI_LEGACY=1, 使用 Rich TUI 回退模式[/]")
-        run_tui(once=once, initial_state=state)
+    run_tui(once=once, initial_state=state)
 
 
 @app.command()
